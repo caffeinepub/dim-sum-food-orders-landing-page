@@ -1,0 +1,67 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "UI text and style fixes: footer, selection label, section headings",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Remove the tagline text from the Footer component",
+      "acceptanceCriteria": [
+        "The tagline text no longer appears in the footer.",
+        "The rest of the footer content (branding, address, phone, attribution) remains intact."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Footer.tsx",
+          "operation": "modify",
+          "description": "Remove the tagline text 'Bringing you the finest handcrafted dim sum, made fresh daily with traditional recipes passed down through generations.' from the Footer component while preserving all other footer content (SUMOJI branding, DKI Jakarta address, Indonesian phone number, and caffeine.ai attribution)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Change the Porsian selection counter label from Indonesian to English",
+      "acceptanceCriteria": [
+        "The selection counter label displays 'selected' instead of 'dipilih'.",
+        "The counter correctly reflects the current number of selected ingredients (e.g., '3/5 selected', '5/5 selected')."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Menu.tsx",
+          "operation": "modify",
+          "description": "Update the Porsian selection counter label to display 'x/5 selected' in English instead of 'x/5 dipilih'. Locate the counter rendering logic that shows the selection count for the Porsian item's ingredient checkboxes and replace the Indonesian text with the English equivalent."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Match the 'Place Your Order' section heading font size to the 'Our Menu' heading",
+      "acceptanceCriteria": [
+        "The 'Place Your Order' heading has the same font size as the 'Our Menu' heading.",
+        "No other heading styles are unintentionally altered."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/OrderForm.tsx",
+          "operation": "modify",
+          "description": "Identify the current font size class applied to the 'Place Your Order' section heading, then examine the 'Our Menu' heading in Menu.tsx to determine its font size. Update the 'Place Your Order' heading to use the same font size class as 'Our Menu', ensuring both headings have consistent sizing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Apply the 'Place Your Order' heading's font style and border styling to the 'Our Menu' heading",
+      "acceptanceCriteria": [
+        "The 'Our Menu' heading visually matches the 'Place Your Order' heading in font style and any border/underline decorations.",
+        "Both headings now share a consistent typographic and decorative treatment."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Menu.tsx",
+          "operation": "modify",
+          "description": "Review the 'Place Your Order' heading in OrderForm.tsx to identify its font family, weight, letter spacing, text transform, and border/underline styling. Apply the same typographic styles (font family, weight, letter spacing, text transform) and any border or decorative elements to the 'Our Menu' section heading to ensure visual consistency between both section headings."
+        }
+      ]
+    }
+  ]
+}

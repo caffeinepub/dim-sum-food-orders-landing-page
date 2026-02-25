@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Dim sum ordering app with a Porsian Menu featuring 7 items and a 5-item selection limit. UI refinements in progress.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-remove-the-footer-tagline-text-bringing-you-the-finest-handcrafted-dim-sum-made-fresh-daily-with-traditional-recipes-passed-down-through-generations-from-the-footer-component",
+      "title": "Remove the footer tagline text 'Bringing you the finest handcrafted dim sum, made fresh daily with traditional recipes passed down through generations.' from the Footer component.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-the-menu-component-change-the-porsian-selection-counter-label-from-5-5-dipilih-to-5-5-selected-and-update-the-pattern-so-any-x-5-count-reads-x-5-selected-in-english",
+      "title": "In the Menu component, change the Porsian selection counter label from '5/5 dipilih' to '5/5 selected' (and update the pattern so any x/5 count reads 'x/5 selected' in English).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-make-the-place-your-order-section-heading-font-size-match-the-font-size-currently-used-by-the-our-menu-section-heading",
+      "title": "Make the 'Place Your Order' section heading font size match the font size currently used by the 'Our Menu' section heading.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-the-font-style-font-family-weight-letter-spacing-text-transform-etc-and-border-styling-currently-used-on-the-place-your-order-section-heading-to-the-our-menu-section-heading",
+      "title": "Apply the font style (font family, weight, letter spacing, text transform, etc.) and border styling currently used on the 'Place Your Order' section heading to the 'Our Menu' section heading.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Remove footer text 'Bringing you the finest handcrafted dim sum, made fresh daily with traditional recipes passed down through generations.'",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Change '5/5 dipilih' label to '5/5 selected'",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Make 'Place Your Order' font size the same as 'Our Menu'",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Make 'Our Menu' font style and border the same as 'Place Your Order'",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Dim Sum Ordering App",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,20 @@
+{
+  "backend/main.mo": "Empty Motoko actor serving as the backend entry point with no implemented functionality.",
+  "feature_evidence.json": "Feature evidence report mapping four UI change features (footer tagline removal, selection counter translation, and heading font/style alignment) to their affected files and test IDs.",
+  "frontend-file-summaries.txt": "JSON document containing one-line summaries of each frontend source file describing their purpose and current state.",
+  "frontend/index.css": "Tailwind CSS entry file defining CSS custom properties for a light/dark color theme using OKLCH values for backgrounds, foregrounds, and UI component tokens.",
+  "frontend/index.html": "HTML entry point for the React app titled 'Dim Sum Food Orders Landing Page' that mounts the app into a root div.",
+  "frontend/src/App.tsx": "Root React component that manages order state (add, update quantity, clear) and composes Hero, Menu, OrderForm, Footer, and Toaster components.",
+  "frontend/src/components/Footer.tsx": "Footer component displaying SUMOJI branding, DKI Jakarta address, phone number, and a caffeine.ai attribution link — with the tagline text removed.",
+  "frontend/src/components/Hero.tsx": "Full-screen hero section with a dim sum background image, SUMOJI heading, 'Steam. Snap. Repeat.' tagline, and an 'Order Now' button that scrolls to the menu.",
+  "frontend/src/components/Menu.tsx": "Menu section rendering three dim sum items with ingredient checkboxes, quantity controls, and an 'Our Menu' heading styled as a pill badge; Porsian selection counter uses 'selected' in English.",
+  "frontend/src/components/OrderForm.tsx": "Order form section with a cart summary, contact details inputs, QRIS payment confirmation, and order submission; 'Place Your Order' heading uses large h2 styling (text-4xl/5xl) matching the Menu heading size.",
+  "frontend/src/hooks/useActor.ts": "Custom React hook that creates and caches an ICP backend actor (anonymous or authenticated) using React Query, invalidating dependent queries when the identity changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides a React context and hook for Internet Identity authentication, managing login/logout state and persisting identity via AuthClient.",
+  "frontend/src/hooks/useQueries.ts": "Intentionally empty placeholder file; no backend queries are implemented since all order data is stored locally in the browser.",
+  "frontend/src/index.css": "Global CSS file that sets up Tailwind directives and defines OKLCH-based CSS custom properties for a warm cream/red/gold theme in both light and dark modes.",
+  "frontend/src/lib/formatCurrency.ts": "Exports a single utility function that formats a number as Indonesian Rupiah currency string (e.g., 'Rp. 17.500,-').",
+  "frontend/src/main.tsx": "Application entry point that mounts the React app wrapped with QueryClientProvider and InternetIdentityProvider.",
+  "frontend/tailwind.config.js": "Tailwind CSS configuration that maps OKLCH CSS variables to semantic color tokens, extends border radius and animations, and registers typography, container-queries, and animate plugins.",
+  "project_state.json": "Tracks project metadata, existing features, and pending UI refinement requests (footer text removal, label translation, heading font size/style alignment) for the dim sum ordering app."
+}

@@ -1,8 +1,8 @@
 {
   "frontend/src/App.tsx": "Main application component managing order state with sub-menu options support, rendering Hero, Menu, OrderForm, and Footer sections with toast notifications.",
   "frontend/src/components/Hero.tsx": "Hero section component with SUMOJI branding, full-screen dim sum background image, \"Steam. Snap. Repeat.\" tagline, and \"Order Now\" call-to-action button with smooth scroll to menu.",
-  "frontend/src/components/Menu.tsx": "Menu section displaying 3 menu items with ingredient checkboxes; \"Our Menu\" heading now styled with primary background and rounded-full pill badge appearance matching \"Place Your Order\"; Porsian selection counter updated from \"dipilih\" to \"selected\".",
-  "frontend/src/components/OrderForm.tsx": "Order form with cart summary, contact form, QRIS payment section, and order submission; \"Place Your Order\" is now a large h2 heading (text-4xl md:text-5xl font-bold) matching \"Our Menu\" font size, replacing the previous small Badge label.",
+  "frontend/src/components/Menu.tsx": "Menu section displaying 3 menu items with ingredient checkboxes; Porsian uses the new porsian-menu.dim_600x400.png (5pcs dimsum), Party Pack 40pcs uses party-pack-40pcs-menu.dim_600x400.png (40pcs dimsum), and Party Pack 50pcs uses party-pack-50pcs-menu.dim_600x400.png (50pcs dimsum).",
+  "frontend/src/components/OrderForm.tsx": "Order form with cart summary, contact form, QRIS payment section, and order submission; \"Place Your Order\" heading now styled with the same pill-badge appearance as \"Our Menu\" (bg-primary text-primary-foreground px-6 py-2 rounded-full inline-block text-4xl md:text-5xl font-bold).",
   "frontend/src/components/Footer.tsx": "Footer component with SUMOJI branding, contact information (DKI Jakarta address and Indonesian phone number), and caffeine.ai attribution — tagline text removed.",
   "frontend/src/hooks/useQueries.ts": "Empty queries file as backend is not used; all data is managed locally in the frontend.",
   "frontend/src/index.css": "Global styles with warm dim sum color palette (reds, creams, golds) using OKLCH color system for both light and dark modes.",

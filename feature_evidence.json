@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-remove-the-footer-tagline-text-bringing-you-the-finest-handcrafted-dim-sum-made-fresh-daily-with-traditional-recipes-passed-down-through-generations-from-the-footer-component",
-      "featureTitle": "Remove the footer tagline text 'Bringing you the finest handcrafted dim sum, made fresh daily with traditional recipes passed down through generations.' from the Footer component.",
+      "featureId": "feature-update-the-porsian-menu-item-image-to-show-5-pieces-of-dimsum",
+      "featureTitle": "Update the Porsian menu item image to show 5 pieces of dimsum.",
       "files": [
-        "frontend/src/components/Footer.tsx"
+        "frontend/src/components/Menu.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -22,8 +22,8 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-in-the-menu-component-change-the-porsian-selection-counter-label-from-5-5-dipilih-to-5-5-selected-and-update-the-pattern-so-any-x-5-count-reads-x-5-selected-in-english",
-      "featureTitle": "In the Menu component, change the Porsian selection counter label from '5/5 dipilih' to '5/5 selected' (and update the pattern so any x/5 count reads 'x/5 selected' in English).",
+      "featureId": "feature-update-the-party-pack-40pcs-menu-item-image-to-show-40-pieces-of-dimsum",
+      "featureTitle": "Update the Party Pack 40pcs menu item image to show 40 pieces of dimsum.",
       "files": [
         "frontend/src/components/Menu.tsx"
       ],
@@ -42,10 +42,10 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-make-the-place-your-order-section-heading-font-size-match-the-font-size-currently-used-by-the-our-menu-section-heading",
-      "featureTitle": "Make the 'Place Your Order' section heading font size match the font size currently used by the 'Our Menu' section heading.",
+      "featureId": "feature-update-the-party-pack-50pcs-menu-item-image-to-show-50-pieces-of-dimsum",
+      "featureTitle": "Update the Party Pack 50pcs menu item image to show 50 pieces of dimsum.",
       "files": [
-        "frontend/src/components/OrderForm.tsx"
+        "frontend/src/components/Menu.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -62,8 +62,8 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-apply-the-font-style-font-family-weight-letter-spacing-text-transform-etc-and-border-styling-currently-used-on-the-place-your-order-section-heading-to-the-our-menu-section-heading",
-      "featureTitle": "Apply the font style (font family, weight, letter spacing, text transform, etc.) and border styling currently used on the 'Place Your Order' section heading to the 'Our Menu' section heading.",
+      "featureId": "feature-render-the-three-newly-generated-menu-images-as-static-assets-in-frontend-public-assets-generated-and-reference-them-in-menu-tsx-for-the-porsian-party-pack-40pcs-and-party-pack-50pcs-menu-cards-respectively",
+      "featureTitle": "Render the three newly generated menu images as static assets in frontend/public/assets/generated and reference them in Menu.tsx for the Porsian, Party Pack 40pcs, and Party Pack 50pcs menu cards respectively.",
       "files": [
         "frontend/src/components/Menu.tsx"
       ],

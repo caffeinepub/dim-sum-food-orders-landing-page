@@ -1,12 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Fix several small UI text and style inconsistencies in the SUMOJI Dim Sum frontend.
+**Goal:** Update the menu item images for Porsian (5pcs), Party Pack 40pcs, and Party Pack 50pcs with new food photos that accurately reflect the quantity of dimsum pieces.
 
 **Planned changes:**
-- Remove the tagline text from the Footer component, keeping all other footer content intact.
-- Change the Porsian selection counter label from "dipilih" to "selected" (e.g., "3/5 selected").
-- Make the "Place Your Order" section heading font size match the "Our Menu" section heading font size.
-- Apply the font style and border/underline decoration from the "Place Your Order" heading to the "Our Menu" heading so both share a consistent typographic treatment.
+- Add a new image for the Porsian menu item showing 5 pieces of steamed dimsum
+- Add a new image for the Party Pack 40pcs menu item showing 40 pieces of steamed dimsum
+- Add a new image for the Party Pack 50pcs menu item showing 50 pieces of steamed dimsum
+- Update Menu.tsx to reference the three new images for their respective menu cards
 
-**User-visible outcome:** The footer no longer shows the tagline, the selection counter displays in English, and both the "Our Menu" and "Place Your Order" section headings share a consistent font size, style, and border decoration.
+**User-visible outcome:** The Porsian, Party Pack 40pcs, and Party Pack 50pcs menu cards each display a new food photo that visually represents the correct number of dimsum pieces included in that item.

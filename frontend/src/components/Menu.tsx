@@ -26,7 +26,7 @@ const menuItems: MenuItem[] = [
     name: 'Porsian',
     description: '1 Porsi isi 5pcs',
     price: 17500,
-    image: '/assets/generated/siu-mai.dim_400x400.jpg',
+    image: '/assets/generated/porsian-menu.dim_600x400.png',
     subOptions: ingredientOptions,
   },
   {
@@ -34,7 +34,7 @@ const menuItems: MenuItem[] = [
     name: 'Party Pack 40pcs',
     description: 'Party Pack isi 40 pcs atau 50 pcs',
     price: 130000,
-    image: '/assets/generated/har-gow.dim_400x400.jpg',
+    image: '/assets/generated/party-pack-40pcs-menu.dim_600x400.png',
     subOptions: ingredientOptions,
   },
   {
@@ -42,7 +42,7 @@ const menuItems: MenuItem[] = [
     name: 'Party Pack 50pcs',
     description: 'Party Pack isi 40 pcs atau 50 pcs',
     price: 165000,
-    image: '/assets/generated/char-siu-bao.dim_400x400.jpg',
+    image: '/assets/generated/party-pack-50pcs-menu.dim_600x400.png',
     subOptions: ingredientOptions,
   },
 ];

@@ -1,89 +1,93 @@
 {
   "kind": "build_request",
-  "title": "UI text and style fixes: footer, selection label, section headings",
-  "projectName": "SUMOJI Dim Sum",
+  "title": "Update menu item images: Porsian (5pcs), Party Pack 40pcs (40pcs), Party Pack 50pcs (50pcs)",
+  "projectName": "Sumoji Dim Sum",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Remove the footer tagline text 'Bringing you the finest handcrafted dim sum, made fresh daily with traditional recipes passed down through generations.' from the Footer component.",
+      "text": "Update the Porsian menu item image to show 5 pieces of dimsum.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "Remove footer \"Bringing you the finest handcrafted dim sum, made fresh daily with traditional recipes passed down through generations.\""
+          "Make Porsian menu picture 5pcs dimsum"
         ]
       },
       "acceptanceCriteria": [
-        "The tagline text no longer appears in the footer.",
-        "The rest of the footer content (branding, address, phone, attribution) remains intact."
+        "The Porsian menu card displays a new image depicting 5 pieces of dimsum.",
+        "The image is saved as a generated static asset under frontend/public/assets/generated."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "In the Menu component, change the Porsian selection counter label from '5/5 dipilih' to '5/5 selected' (and update the pattern so any x/5 count reads 'x/5 selected' in English).",
+      "text": "Update the Party Pack 40pcs menu item image to show 40 pieces of dimsum.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "5/5 dipilih change to 5/5 selected"
+          "Party Pack 40pcs menu picture 40pcs dimsum"
         ]
       },
       "acceptanceCriteria": [
-        "The selection counter label displays 'selected' instead of 'dipilih'.",
-        "The counter correctly reflects the current number of selected ingredients (e.g., '3/5 selected', '5/5 selected')."
+        "The Party Pack 40pcs menu card displays a new image depicting 40 pieces of dimsum.",
+        "The image is saved as a generated static asset under frontend/public/assets/generated."
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Make the 'Place Your Order' section heading font size match the font size currently used by the 'Our Menu' section heading.",
+      "text": "Update the Party Pack 50pcs menu item image to show 50 pieces of dimsum.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "Make \"Place Your Order\" font size same as \"Our Menu\""
+          "Party Pack 50pcs menu picture 50pcs dimsum"
         ]
       },
       "acceptanceCriteria": [
-        "The 'Place Your Order' heading has the same font size as the 'Our Menu' heading.",
-        "No other heading styles are unintentionally altered."
+        "The Party Pack 50pcs menu card displays a new image depicting 50 pieces of dimsum.",
+        "The image is saved as a generated static asset under frontend/public/assets/generated."
       ]
     },
     {
       "id": "REQ-4",
-      "text": "Apply the font style (font family, weight, letter spacing, text transform, etc.) and border styling currently used on the 'Place Your Order' section heading to the 'Our Menu' section heading.",
+      "text": "Render the three newly generated menu images as static assets in frontend/public/assets/generated and reference them in Menu.tsx for the Porsian, Party Pack 40pcs, and Party Pack 50pcs menu cards respectively.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
-        ],
-        "quotes": [
-          "Make \"Our Menu\" font style and border same as \"Place Your Order\""
         ]
       },
       "acceptanceCriteria": [
-        "The 'Our Menu' heading visually matches the 'Place Your Order' heading in font style and any border/underline decorations.",
-        "Both headings now share a consistent typographic and decorative treatment."
+        "Menu.tsx imports and displays porsian-menu.png for the Porsian card.",
+        "Menu.tsx imports and displays party-pack-40pcs-menu.png for the Party Pack 40pcs card.",
+        "Menu.tsx imports and displays party-pack-50pcs-menu.png for the Party Pack 50pcs card.",
+        "All three images load without errors in the browser."
       ]
     }
   ],
   "constraints": [
-    "Do not alter any immutable frontend paths (hooks, main.tsx, ui components).",
-    "Do not modify backend logic; this is a frontend-only change."
+    "Do not change any menu item names, prices, descriptions, or ingredient checkboxes.",
+    "Do not modify files listed in frontend.immutablePaths.",
+    "All generated images must be placed under frontend/public/assets/generated."
   ],
   "nonGoals": [
-    "Redesigning the overall page layout or color theme.",
-    "Changing any other text content beyond what is specified.",
-    "Adding or removing menu items."
+    "Adding new menu items.",
+    "Changing order form or cart logic.",
+    "Backend changes."
   ],
   "imageRequirements": {
-    "required": [],
+    "required": [
+      "Overhead close-up food photo of 5 steamed dimsum dumplings arranged neatly on a bamboo steamer, warm appetizing lighting, clean background (porsian-menu.dim_600x400.png)",
+      "Overhead close-up food photo of 40 steamed dimsum dumplings arranged in multiple bamboo steamers stacked together, warm appetizing lighting, festive abundance feel (party-pack-40pcs-menu.dim_600x400.png)",
+      "Overhead close-up food photo of 50 steamed dimsum dumplings arranged in multiple bamboo steamers stacked together, warm appetizing lighting, festive abundance feel, slightly larger spread than 40pcs presentation (party-pack-50pcs-menu.dim_600x400.png)"
+    ],
     "edits": []
   }
 }

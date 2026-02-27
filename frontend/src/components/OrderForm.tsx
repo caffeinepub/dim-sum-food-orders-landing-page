@@ -137,7 +137,7 @@ export default function OrderForm({
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 inline-block bg-primary text-primary-foreground px-6 py-2 rounded-full">
             Place Your Order
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -244,17 +244,7 @@ export default function OrderForm({
 
                   <Separator className="my-4" />
 
-                  {/* Totals */}
                   <div className="space-y-2">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Subtotal</span>
-                      <span className="font-medium">{formatCurrency(totalPrice)}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Delivery Fee</span>
-                      <span className="font-medium">{formatCurrency(0)}</span>
-                    </div>
-                    <Separator className="my-2" />
                     <div className="flex justify-between text-lg font-bold">
                       <span>Total</span>
                       <span className="text-primary">{formatCurrency(totalPrice)}</span>
@@ -262,12 +252,12 @@ export default function OrderForm({
                   </div>
 
                   <Button
-                    variant="destructive"
-                    className="w-full mt-4"
+                    variant="outline"
+                    className="w-full mt-4 text-destructive border-destructive hover:bg-destructive hover:text-destructive-foreground"
                     onClick={onClearOrder}
                   >
                     <Trash2 className="h-4 w-4 mr-2" />
-                    Clear Cart
+                    Clear Order
                   </Button>
                 </>
               )}
@@ -276,22 +266,20 @@ export default function OrderForm({
 
           {/* Contact & Payment Form */}
           <div className="space-y-6">
-            {/* Contact Details */}
             <Card className="border-2">
               <CardHeader>
                 <CardTitle>Delivery Details</CardTitle>
                 <CardDescription>
-                  Enter your contact information for delivery
+                  Enter your contact information for order confirmation.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form className="space-y-4">
+                <form onSubmit={handleSubmitOrder} className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="name">Full Name</Label>
                     <Input
                       id="name"
-                      type="text"
-                      placeholder="Enter your full name"
+                      placeholder="Your full name"
                       value={contactDetails.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
                       required
@@ -302,7 +290,7 @@ export default function OrderForm({
                     <Input
                       id="phone"
                       type="tel"
-                      placeholder="08xxxxxxxxxx"
+                      placeholder="e.g. 08123456789"
                       value={contactDetails.phone}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
                       required
@@ -317,33 +305,36 @@ export default function OrderForm({
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <QrCode className="h-5 w-5" />
-                  QRIS Payment
+                  Payment via QRIS
                 </CardTitle>
                 <CardDescription>
-                  Scan the QR code to pay {formatCurrency(totalPrice)}
+                  Scan the QR code below to complete your payment.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex justify-center p-4 bg-white rounded-lg">
-                  <img
-                    src="/assets/generated/qris-payment-code.dim_300x300.png"
-                    alt="QRIS Payment Code"
-                    className="w-64 h-64 object-contain"
-                  />
+                <div className="flex justify-center">
+                  <div className="p-3 bg-white rounded-xl border-2 border-muted inline-block">
+                    <img
+                      src="/assets/generated/qris-payment-code.dim_300x300.png"
+                      alt="QRIS Payment Code"
+                      className="w-48 h-48 object-contain"
+                    />
+                  </div>
                 </div>
-                <div className="text-center space-y-2">
-                  <p className="text-sm text-muted-foreground">
-                    Total Amount
-                  </p>
-                  <p className="text-2xl font-bold text-primary">
-                    {formatCurrency(totalPrice)}
-                  </p>
-                </div>
+                {totalPrice > 0 && (
+                  <div className="text-center p-3 bg-primary/10 rounded-lg">
+                    <p className="text-sm text-muted-foreground mb-1">Amount to pay</p>
+                    <p className="text-2xl font-bold text-primary">
+                      {formatCurrency(totalPrice)}
+                    </p>
+                  </div>
+                )}
                 <Button
-                  className="w-full"
+                  type="button"
                   variant={paymentConfirmed ? 'secondary' : 'default'}
+                  className="w-full"
                   onClick={handlePaymentConfirmation}
-                  disabled={paymentConfirmed || orderItems.length === 0}
+                  disabled={paymentConfirmed}
                 >
                   {paymentConfirmed ? (
                     <>
@@ -351,7 +342,7 @@ export default function OrderForm({
                       Payment Confirmed
                     </>
                   ) : (
-                    'Confirm Payment'
+                    'I Have Paid'
                   )}
                 </Button>
               </CardContent>
@@ -359,12 +350,20 @@ export default function OrderForm({
 
             {/* Submit Order */}
             <Button
+              type="submit"
               size="lg"
-              className="w-full"
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
               onClick={handleSubmitOrder}
               disabled={isSubmitting || !paymentConfirmed || orderItems.length === 0}
             >
-              {isSubmitting ? 'Processing...' : 'Submit Order'}
+              {isSubmitting ? (
+                <span className="flex items-center gap-2">
+                  <span className="h-4 w-4 border-2 border-primary-foreground border-t-transparent rounded-full animate-spin" />
+                  Processing...
+                </span>
+              ) : (
+                'Submit Order'
+              )}
             </Button>
           </div>
         </div>

@@ -1,65 +1,67 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "UI text and style fixes: footer, selection label, section headings",
+  "title": "Update menu item images: Porsian (5pcs), Party Pack 40pcs (40pcs), Party Pack 50pcs (50pcs)",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Remove the tagline text from the Footer component",
+      "summary": "Update the Porsian menu item image to show 5 pieces of dimsum",
       "acceptanceCriteria": [
-        "The tagline text no longer appears in the footer.",
-        "The rest of the footer content (branding, address, phone, attribution) remains intact."
+        "The Porsian menu card displays a new image depicting 5 pieces of dimsum.",
+        "The image is saved as a generated static asset under frontend/public/assets/generated."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/Footer.tsx",
+          "path": "frontend/src/components/Menu.tsx",
           "operation": "modify",
-          "description": "Remove the tagline text 'Bringing you the finest handcrafted dim sum, made fresh daily with traditional recipes passed down through generations.' from the Footer component while preserving all other footer content (SUMOJI branding, DKI Jakarta address, Indonesian phone number, and caffeine.ai attribution)."
+          "description": "Update the Porsian menu card to reference the newly generated image frontend/public/assets/generated/porsian-menu.dim_600x400.png instead of the current image. Verify the image path matches the generated asset exactly."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Change the Porsian selection counter label from Indonesian to English",
+      "summary": "Update the Party Pack 40pcs menu item image to show 40 pieces of dimsum",
       "acceptanceCriteria": [
-        "The selection counter label displays 'selected' instead of 'dipilih'.",
-        "The counter correctly reflects the current number of selected ingredients (e.g., '3/5 selected', '5/5 selected')."
+        "The Party Pack 40pcs menu card displays a new image depicting 40 pieces of dimsum.",
+        "The image is saved as a generated static asset under frontend/public/assets/generated."
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Menu.tsx",
           "operation": "modify",
-          "description": "Update the Porsian selection counter label to display 'x/5 selected' in English instead of 'x/5 dipilih'. Locate the counter rendering logic that shows the selection count for the Porsian item's ingredient checkboxes and replace the Indonesian text with the English equivalent."
+          "description": "Update the Party Pack 40pcs menu card to reference the newly generated image frontend/public/assets/generated/party-pack-40pcs-menu.dim_600x400.png instead of the current image. Verify the image path matches the generated asset exactly."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Match the 'Place Your Order' section heading font size to the 'Our Menu' heading",
+      "summary": "Update the Party Pack 50pcs menu item image to show 50 pieces of dimsum",
       "acceptanceCriteria": [
-        "The 'Place Your Order' heading has the same font size as the 'Our Menu' heading.",
-        "No other heading styles are unintentionally altered."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/OrderForm.tsx",
-          "operation": "modify",
-          "description": "Identify the current font size class applied to the 'Place Your Order' section heading, then examine the 'Our Menu' heading in Menu.tsx to determine its font size. Update the 'Place Your Order' heading to use the same font size class as 'Our Menu', ensuring both headings have consistent sizing."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Apply the 'Place Your Order' heading's font style and border styling to the 'Our Menu' heading",
-      "acceptanceCriteria": [
-        "The 'Our Menu' heading visually matches the 'Place Your Order' heading in font style and any border/underline decorations.",
-        "Both headings now share a consistent typographic and decorative treatment."
+        "The Party Pack 50pcs menu card displays a new image depicting 50 pieces of dimsum.",
+        "The image is saved as a generated static asset under frontend/public/assets/generated."
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Menu.tsx",
           "operation": "modify",
-          "description": "Review the 'Place Your Order' heading in OrderForm.tsx to identify its font family, weight, letter spacing, text transform, and border/underline styling. Apply the same typographic styles (font family, weight, letter spacing, text transform) and any border or decorative elements to the 'Our Menu' section heading to ensure visual consistency between both section headings."
+          "description": "Update the Party Pack 50pcs menu card to reference the newly generated image frontend/public/assets/generated/party-pack-50pcs-menu.dim_600x400.png instead of the current image. Verify the image path matches the generated asset exactly."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Render the three newly generated menu images as static assets in frontend/public/assets/generated and reference them in Menu.tsx for the Porsian, Party Pack 40pcs, and Party Pack 50pcs menu cards respectively",
+      "acceptanceCriteria": [
+        "Menu.tsx imports and displays porsian-menu.png for the Porsian card.",
+        "Menu.tsx imports and displays party-pack-40pcs-menu.png for the Party Pack 40pcs card.",
+        "Menu.tsx imports and displays party-pack-50pcs-menu.png for the Party Pack 50pcs card.",
+        "All three images load without errors in the browser."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Menu.tsx",
+          "operation": "modify",
+          "description": "Import the three generated images (frontend/public/assets/generated/porsian-menu.dim_600x400.png, frontend/public/assets/generated/party-pack-40pcs-menu.dim_600x400.png, frontend/public/assets/generated/party-pack-50pcs-menu.dim_600x400.png) and ensure each menu card correctly references its corresponding new image. Verify all image paths are correct and that no other menu properties (name, price, description, ingredients) are modified."
         }
       ]
     }

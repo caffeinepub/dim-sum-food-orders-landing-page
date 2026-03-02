@@ -1,67 +1,26 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update menu item images: Porsian (5pcs), Party Pack 40pcs (40pcs), Party Pack 50pcs (50pcs)",
+  "title": "Replace QRIS payment image with uploaded image",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Update the Porsian menu item image to show 5 pieces of dimsum",
+      "summary": "Replace the existing QRIS payment image in the OrderForm component with the newly uploaded QRIS image",
       "acceptanceCriteria": [
-        "The Porsian menu card displays a new image depicting 5 pieces of dimsum.",
-        "The image is saved as a generated static asset under frontend/public/assets/generated."
+        "The QRIS section in the OrderForm displays the new uploaded QRIS image (showing DIMSUM OJI / NMID: ID1026488874078).",
+        "The old QRIS image is no longer shown anywhere in the app.",
+        "The image is served from frontend/public/assets/generated/qris.png."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/Menu.tsx",
-          "operation": "modify",
-          "description": "Update the Porsian menu card to reference the newly generated image frontend/public/assets/generated/porsian-menu.dim_600x400.png instead of the current image. Verify the image path matches the generated asset exactly."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Update the Party Pack 40pcs menu item image to show 40 pieces of dimsum",
-      "acceptanceCriteria": [
-        "The Party Pack 40pcs menu card displays a new image depicting 40 pieces of dimsum.",
-        "The image is saved as a generated static asset under frontend/public/assets/generated."
-      ],
-      "file_operations": [
+          "path": "frontend/public/assets/generated/qris.dim_800x1100.png",
+          "operation": "create",
+          "description": "Save the generated QRIS payment code image (showing QRIS logo, GPN eagle logo, DIMSUM OJI merchant name, NMID ID1026488874078, label A01, large QR code, and red footer with payment method icons) as a static asset at this workspace path."
+        },
         {
-          "path": "frontend/src/components/Menu.tsx",
+          "path": "frontend/src/components/OrderForm.tsx",
           "operation": "modify",
-          "description": "Update the Party Pack 40pcs menu card to reference the newly generated image frontend/public/assets/generated/party-pack-40pcs-menu.dim_600x400.png instead of the current image. Verify the image path matches the generated asset exactly."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Update the Party Pack 50pcs menu item image to show 50 pieces of dimsum",
-      "acceptanceCriteria": [
-        "The Party Pack 50pcs menu card displays a new image depicting 50 pieces of dimsum.",
-        "The image is saved as a generated static asset under frontend/public/assets/generated."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/Menu.tsx",
-          "operation": "modify",
-          "description": "Update the Party Pack 50pcs menu card to reference the newly generated image frontend/public/assets/generated/party-pack-50pcs-menu.dim_600x400.png instead of the current image. Verify the image path matches the generated asset exactly."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Render the three newly generated menu images as static assets in frontend/public/assets/generated and reference them in Menu.tsx for the Porsian, Party Pack 40pcs, and Party Pack 50pcs menu cards respectively",
-      "acceptanceCriteria": [
-        "Menu.tsx imports and displays porsian-menu.png for the Porsian card.",
-        "Menu.tsx imports and displays party-pack-40pcs-menu.png for the Party Pack 40pcs card.",
-        "Menu.tsx imports and displays party-pack-50pcs-menu.png for the Party Pack 50pcs card.",
-        "All three images load without errors in the browser."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/Menu.tsx",
-          "operation": "modify",
-          "description": "Import the three generated images (frontend/public/assets/generated/porsian-menu.dim_600x400.png, frontend/public/assets/generated/party-pack-40pcs-menu.dim_600x400.png, frontend/public/assets/generated/party-pack-50pcs-menu.dim_600x400.png) and ensure each menu card correctly references its corresponding new image. Verify all image paths are correct and that no other menu properties (name, price, description, ingredients) are modified."
+          "description": "Update the QRIS image reference in the OrderForm component to point to the new static asset at frontend/public/assets/generated/qris.dim_800x1100.png. Replace the existing <img> src attribute that currently references the old QRIS image (generated/qris-payment-code.dim_300x300.png) with the new path /assets/generated/qris.dim_800x1100.png. Ensure the image displays properly within the QRIS payment section with appropriate responsive styling."
         }
       ]
     }

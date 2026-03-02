@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-porsian-menu-item-image-to-show-5-pieces-of-dimsum",
-      "featureTitle": "Update the Porsian menu item image to show 5 pieces of dimsum.",
+      "featureId": "feature-replace-the-existing-qris-payment-image-in-the-orderform-component-with-the-newly-uploaded-qris-image-g191285866-0703a01-default-png-save-the-image-as-a-static-asset-at-frontend-public-assets-generated-qris-png-and-update-the-img-src-reference-in-orderform-tsx-to-point-to-this-new-file",
+      "featureTitle": "Replace the existing QRIS payment image in the OrderForm component with the newly uploaded QRIS image (G191285866-0703A01-default.png). Save the image as a static asset at frontend/public/assets/generated/qris.png and update the <img> src reference in OrderForm.tsx to point to this new file.",
       "files": [
-        "frontend/src/components/Menu.tsx"
+        "frontend/src/components/OrderForm.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -18,66 +18,6 @@
       ],
       "testIds": [
         "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-party-pack-40pcs-menu-item-image-to-show-40-pieces-of-dimsum",
-      "featureTitle": "Update the Party Pack 40pcs menu item image to show 40 pieces of dimsum.",
-      "files": [
-        "frontend/src/components/Menu.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "qr-code@1.0.0",
-        "camera@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-party-pack-50pcs-menu-item-image-to-show-50-pieces-of-dimsum",
-      "featureTitle": "Update the Party Pack 50pcs menu item image to show 50 pieces of dimsum.",
-      "files": [
-        "frontend/src/components/Menu.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "qr-code@1.0.0",
-        "camera@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-render-the-three-newly-generated-menu-images-as-static-assets-in-frontend-public-assets-generated-and-reference-them-in-menu-tsx-for-the-porsian-party-pack-40pcs-and-party-pack-50pcs-menu-cards-respectively",
-      "featureTitle": "Render the three newly generated menu images as static assets in frontend/public/assets/generated and reference them in Menu.tsx for the Porsian, Party Pack 40pcs, and Party Pack 50pcs menu cards respectively.",
-      "files": [
-        "frontend/src/components/Menu.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "qr-code@1.0.0",
-        "camera@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
       ],
       "confidence": "high"
     }

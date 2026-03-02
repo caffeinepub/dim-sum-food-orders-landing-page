@@ -1,39 +1,16 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-27T02:04:09.683Z",
-  "summary": "Menu.tsx has been updated to reference the three new image paths under /assets/generated/. However, the actual image files (porsian-menu.dim_600x400.png, party-pack-40pcs-menu.dim_600x400.png, party-pack-50pcs-menu.dim_600x400.png) do not appear in the diff as added files under frontend/public/assets/generated. The code references are in place, but the physical image assets are missing from the diff.",
+  "generatedAt": "2026-03-02T07:03:38.408Z",
+  "summary": "The diff modifies OrderForm.tsx to show a new QRIS image, but uses the path '/assets/G191285866-0703A01-default.png' instead of the required '/assets/generated/qris.png'. The spec requires saving the image as 'frontend/public/assets/generated/qris.png' and referencing it accordingly. No evidence shows the image was saved at the correct path or that the src reference was updated to point to the correct location.",
   "missing_requirements": [
     {
       "id": "REQ-1",
-      "requirement": "The image is saved as a generated static asset under frontend/public/assets/generated.",
-      "reason": "The diff shows no added files. The image file porsian-menu.dim_600x400.png is not listed as an added file under frontend/public/assets/generated.",
+      "requirement": "Save the image as a static asset at frontend/public/assets/generated/qris.png and update the <img> src reference in OrderForm.tsx to point to this new file (/assets/generated/qris.png).",
+      "reason": "The file-diff summary explicitly states the QRIS image is referenced from '/assets/G191285866-0703A01-default.png' rather than the required '/assets/generated/qris.png'. No new file was added to 'frontend/public/assets/generated/qris.png' (ADDED FILES shows none). The acceptance criteria require the image to be served from frontend/public/assets/generated/qris.png.",
       "evidence": [
-        "frontend/src/components/Menu.tsx"
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "requirement": "The image is saved as a generated static asset under frontend/public/assets/generated.",
-      "reason": "The diff shows no added files. The image file party-pack-40pcs-menu.dim_600x400.png is not listed as an added file under frontend/public/assets/generated.",
-      "evidence": [
-        "frontend/src/components/Menu.tsx"
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "requirement": "The image is saved as a generated static asset under frontend/public/assets/generated.",
-      "reason": "The diff shows no added files. The image file party-pack-50pcs-menu.dim_600x400.png is not listed as an added file under frontend/public/assets/generated.",
-      "evidence": [
-        "frontend/src/components/Menu.tsx"
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "requirement": "All three images load without errors in the browser.",
-      "reason": "Since none of the three image files appear as added files in the diff, they would not be served as static assets and would fail to load in the browser.",
-      "evidence": [
-        "frontend/src/components/Menu.tsx"
+        "frontend/src/components/OrderForm.tsx",
+        "frontend-file-summaries.txt"
       ]
     }
   ],
@@ -41,7 +18,7 @@
   "confidence": 0.85,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/components/Menu.tsx",
+    "frontend/src/components/OrderForm.tsx",
     "project_state.json"
   ]
 }

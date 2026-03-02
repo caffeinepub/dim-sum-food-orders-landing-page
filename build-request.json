@@ -1,92 +1,35 @@
 {
   "kind": "build_request",
-  "title": "Update menu item images: Porsian (5pcs), Party Pack 40pcs (40pcs), Party Pack 50pcs (50pcs)",
-  "projectName": "Sumoji Dim Sum",
+  "title": "Replace QRIS payment image with uploaded image",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Update the Porsian menu item image to show 5 pieces of dimsum.",
+      "text": "Replace the existing QRIS payment image in the OrderForm component with the newly uploaded QRIS image (G191285866-0703A01-default.png). Save the image as a static asset at frontend/public/assets/generated/qris.png and update the <img> src reference in OrderForm.tsx to point to this new file.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-latest"
         ],
         "quotes": [
-          "Make Porsian menu picture 5pcs dimsum"
+          "Change QRIS image into this"
         ]
       },
       "acceptanceCriteria": [
-        "The Porsian menu card displays a new image depicting 5 pieces of dimsum.",
-        "The image is saved as a generated static asset under frontend/public/assets/generated."
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Update the Party Pack 40pcs menu item image to show 40 pieces of dimsum.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Party Pack 40pcs menu picture 40pcs dimsum"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The Party Pack 40pcs menu card displays a new image depicting 40 pieces of dimsum.",
-        "The image is saved as a generated static asset under frontend/public/assets/generated."
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Update the Party Pack 50pcs menu item image to show 50 pieces of dimsum.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Party Pack 50pcs menu picture 50pcs dimsum"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The Party Pack 50pcs menu card displays a new image depicting 50 pieces of dimsum.",
-        "The image is saved as a generated static asset under frontend/public/assets/generated."
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Render the three newly generated menu images as static assets in frontend/public/assets/generated and reference them in Menu.tsx for the Porsian, Party Pack 40pcs, and Party Pack 50pcs menu cards respectively.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Menu.tsx imports and displays porsian-menu.png for the Porsian card.",
-        "Menu.tsx imports and displays party-pack-40pcs-menu.png for the Party Pack 40pcs card.",
-        "Menu.tsx imports and displays party-pack-50pcs-menu.png for the Party Pack 50pcs card.",
-        "All three images load without errors in the browser."
+        "The QRIS section in the OrderForm displays the new uploaded QRIS image (showing DIMSUM OJI / NMID: ID1026488874078).",
+        "The old QRIS image is no longer shown anywhere in the app.",
+        "The image is served from frontend/public/assets/generated/qris.png."
       ]
     }
   ],
-  "constraints": [
-    "Do not change any menu item names, prices, descriptions, or ingredient checkboxes.",
-    "Do not modify files listed in frontend.immutablePaths.",
-    "All generated images must be placed under frontend/public/assets/generated."
-  ],
+  "constraints": [],
   "nonGoals": [
-    "Adding new menu items.",
-    "Changing order form or cart logic.",
-    "Backend changes."
+    "Modifying any other part of the OrderForm beyond the QRIS image.",
+    "Changing backend logic."
   ],
   "imageRequirements": {
     "required": [
-      "Overhead close-up food photo of 5 steamed dimsum dumplings arranged neatly on a bamboo steamer, warm appetizing lighting, clean background (porsian-menu.dim_600x400.png)",
-      "Overhead close-up food photo of 40 steamed dimsum dumplings arranged in multiple bamboo steamers stacked together, warm appetizing lighting, festive abundance feel (party-pack-40pcs-menu.dim_600x400.png)",
-      "Overhead close-up food photo of 50 steamed dimsum dumplings arranged in multiple bamboo steamers stacked together, warm appetizing lighting, festive abundance feel, slightly larger spread than 40pcs presentation (party-pack-50pcs-menu.dim_600x400.png)"
+      "QRIS payment code card with white background, red accent shapes, QRIS logo top-left, GPN eagle logo top-right, bold text 'DIMSUM OJI', NMID ID1026488874078, label A01, large black QR code center, red footer strip with payment method icons (qris.dim_800x1100.png)"
     ],
     "edits": []
   }

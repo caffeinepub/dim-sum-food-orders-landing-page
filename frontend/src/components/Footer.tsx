@@ -1,11 +1,16 @@
 import { Separator } from '@/components/ui/separator';
-import { MapPin, Phone, Heart } from 'lucide-react';
+import { MapPin, Heart } from 'lucide-react';
+import { SiWhatsapp } from 'react-icons/si';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const appIdentifier = typeof window !== 'undefined' 
     ? encodeURIComponent(window.location.hostname) 
     : 'unknown-app';
+
+  const phoneNumber = '085259008382';
+  // wa.me requires international format; Indonesian numbers start with 0, replace with country code 62
+  const waNumber = phoneNumber.startsWith('0') ? '62' + phoneNumber.slice(1) : phoneNumber;
 
   return (
     <footer className="bg-card border-t-2 border-border">
@@ -27,8 +32,15 @@ export default function Footer() {
                 <span>DKI Jakarta</span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="h-4 w-4 flex-shrink-0 text-primary" />
-                <span>085259008382</span>
+                <SiWhatsapp className="h-4 w-4 flex-shrink-0 text-[#25D366]" />
+                <a
+                  href={`https://wa.me/${waNumber}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-foreground transition-colors hover:underline"
+                >
+                  {phoneNumber}
+                </a>
               </div>
             </div>
           </div>

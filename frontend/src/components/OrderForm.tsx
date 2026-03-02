@@ -313,11 +313,11 @@ export default function OrderForm({
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex justify-center">
-                  <div className="p-3 bg-white rounded-xl border-2 border-muted inline-block">
+                  <div className="p-2 bg-white rounded-xl border-2 border-muted inline-block">
                     <img
-                      src="/assets/generated/qris-payment-code.dim_300x300.png"
-                      alt="QRIS Payment Code"
-                      className="w-48 h-48 object-contain"
+                      src="/assets/G191285866-0703A01-default.png"
+                      alt="QRIS Payment Code - DIMSUM OJI"
+                      className="w-full max-w-xs object-contain rounded-lg"
                     />
                   </div>
                 </div>

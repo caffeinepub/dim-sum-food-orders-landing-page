@@ -32,7 +32,7 @@ const menuItems: MenuItem[] = [
   {
     id: 'party-pack-40',
     name: 'Party Pack 40pcs',
-    description: 'Party Pack isi 40 pcs atau 50 pcs',
+    description: 'Party Pack isi 40 pcs',
     price: 130000,
     image: '/assets/generated/party-pack-40pcs-menu.dim_600x400.png',
     subOptions: ingredientOptions,
@@ -40,7 +40,7 @@ const menuItems: MenuItem[] = [
   {
     id: 'party-pack-50',
     name: 'Party Pack 50pcs',
-    description: 'Party Pack isi 40 pcs atau 50 pcs',
+    description: 'Party Pack isi 50 pcs',
     price: 165000,
     image: '/assets/generated/party-pack-50pcs-menu.dim_600x400.png',
     subOptions: ingredientOptions,

@@ -1,48 +1,23 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Dimsum menu app with Porsian (5pcs), Party Pack 40pcs, and Party Pack 50pcs menu items. User is updating menu item pictures to match their respective dimsum quantities.",
+  "summary": "New project",
   "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Overhead close-up food photo of 5 steamed dimsum dumplings arranged neatly on a bamboo steamer, warm appetizing lighting, clean background (porsian-menu.dim_600x400.png)\n- Overhead close-up food photo of 40 steamed dimsum dumplings arranged in multiple bamboo steamers stacked together, warm appetizing lighting, festive abundance feel (party-pack-40pcs-menu.dim_600x400.png)\n- Overhead close-up food photo of 50 steamed dimsum dumplings arranged in multiple bamboo steamers stacked together, warm appetizing lighting, festive abundance feel, slightly larger spread than 40pcs presentation (party-pack-50pcs-menu.dim_600x400.png)",
+  "imageRequirements": "## Required Images\n- QRIS payment code card with white background, red accent shapes, QRIS logo top-left, GPN eagle logo top-right, bold text 'DIMSUM OJI', NMID ID1026488874078, label A01, large black QR code center, red footer strip with payment method icons (qris.dim_800x1100.png)",
   "existing_features": [
     {
-      "id": "feature-update-the-porsian-menu-item-image-to-show-5-pieces-of-dimsum",
-      "title": "Update the Porsian menu item image to show 5 pieces of dimsum.",
+      "id": "feature-replace-the-existing-qris-payment-image-in-the-orderform-component-with-the-newly-uploaded-qris-image-g191285866-0703a01-default-png-save-the-image-as-a-static-asset-at-frontend-public-assets-generated-qris-png-and-update-the-img-src-reference-in-orderform-tsx-to-point-to-this-new-file",
+      "title": "Replace the existing QRIS payment image in the OrderForm component with the newly uploaded QRIS image (G191285866-0703A01-default.png). Save the image as a static asset at frontend/public/assets/generated/qris.png and update the <img> src reference in OrderForm.tsx to point to this new file.",
       "reqIds": [
         "REQ-1"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-party-pack-40pcs-menu-item-image-to-show-40-pieces-of-dimsum",
-      "title": "Update the Party Pack 40pcs menu item image to show 40 pieces of dimsum.",
-      "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-party-pack-50pcs-menu-item-image-to-show-50-pieces-of-dimsum",
-      "title": "Update the Party Pack 50pcs menu item image to show 50 pieces of dimsum.",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-render-the-three-newly-generated-menu-images-as-static-assets-in-frontend-public-assets-generated-and-reference-them-in-menu-tsx-for-the-porsian-party-pack-40pcs-and-party-pack-50pcs-menu-cards-respectively",
-      "title": "Render the three newly generated menu images as static assets in frontend/public/assets/generated and reference them in Menu.tsx for the Porsian, Party Pack 40pcs, and Party Pack 50pcs menu cards respectively.",
-      "reqIds": [
-        "REQ-4"
       ],
       "version": 1
     }
   ],
   "new_feature_requests": [],
-  "gameProjectType": "none",
-  "projectName": "Sumoji Dim Sum",
+  "projectName": "Replace QRIS payment image with uploaded image",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

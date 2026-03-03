@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-03-02T07:03:38.411Z",
+  "generatedAt": "2026-03-03T08:04:13.110Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -12,14 +12,12 @@
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Replace the existing QRIS payment image in the OrderForm component with the newly uploaded QRIS image (G191285866-0703A01-default.png). Save the image as a static asset at frontend/public/assets/generated/qris.png and update the <img> src reference in OrderForm.tsx to point to this new file.",
+        "summary": "After the user clicks the 'Confirm Payment Received' button (or equivalent payment confirmation action) in the OrderForm component, trigger a full page reload (window.location.reload()) so the app resets to its initial state.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/public/assets/generated/qris.dim_800x1100.png",
           "frontend/src/components/OrderForm.tsx"
         ],
         "matchedFiles": [
-          "frontend/public/assets/generated/qris.dim_800x1100.png",
           "frontend/src/components/OrderForm.tsx"
         ]
       }
@@ -30,7 +28,6 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/public/assets/generated/qris.dim_800x1100.png",
     "frontend/src/components/OrderForm.tsx",
     "project_state.json",
     "scratch/component-selection.json",

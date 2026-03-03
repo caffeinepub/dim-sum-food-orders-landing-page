@@ -2,8 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-replace-the-existing-qris-payment-image-in-the-orderform-component-with-the-newly-uploaded-qris-image-g191285866-0703a01-default-png-save-the-image-as-a-static-asset-at-frontend-public-assets-generated-qris-png-and-update-the-img-src-reference-in-orderform-tsx-to-point-to-this-new-file",
-      "featureTitle": "Replace the existing QRIS payment image in the OrderForm component with the newly uploaded QRIS image (G191285866-0703A01-default.png). Save the image as a static asset at frontend/public/assets/generated/qris.png and update the <img> src reference in OrderForm.tsx to point to this new file.",
+      "featureId": "feature-after-the-user-clicks-the-confirm-payment-received-button-or-equivalent-payment-confirmation-action-in-the-orderform-component-trigger-a-full-page-reload-window-location-reload-so-the-app-resets-to-its-initial-state",
+      "featureTitle": "After the user clicks the 'Confirm Payment Received' button (or equivalent payment confirmation action) in the OrderForm component, trigger a full page reload (window.location.reload()) so the app resets to its initial state.",
       "files": [
         "frontend/src/components/OrderForm.tsx"
       ],

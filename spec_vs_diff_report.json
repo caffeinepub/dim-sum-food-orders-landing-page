@@ -1,21 +1,11 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-03-02T07:03:38.408Z",
-  "summary": "The diff modifies OrderForm.tsx to show a new QRIS image, but uses the path '/assets/G191285866-0703A01-default.png' instead of the required '/assets/generated/qris.png'. The spec requires saving the image as 'frontend/public/assets/generated/qris.png' and referencing it accordingly. No evidence shows the image was saved at the correct path or that the src reference was updated to point to the correct location.",
-  "missing_requirements": [
-    {
-      "id": "REQ-1",
-      "requirement": "Save the image as a static asset at frontend/public/assets/generated/qris.png and update the <img> src reference in OrderForm.tsx to point to this new file (/assets/generated/qris.png).",
-      "reason": "The file-diff summary explicitly states the QRIS image is referenced from '/assets/G191285866-0703A01-default.png' rather than the required '/assets/generated/qris.png'. No new file was added to 'frontend/public/assets/generated/qris.png' (ADDED FILES shows none). The acceptance criteria require the image to be served from frontend/public/assets/generated/qris.png.",
-      "evidence": [
-        "frontend/src/components/OrderForm.tsx",
-        "frontend-file-summaries.txt"
-      ]
-    }
-  ],
+  "generatedAt": "2026-03-03T08:04:13.108Z",
+  "summary": "The diff implements REQ-1 correctly. In OrderForm.tsx, the handleConfirmPaymentReceived function calls markOrderPaid(), shows a success toast with a 2-second duration, and then triggers window.location.reload() after a 1.5-second delay — ensuring the toast is visible before reload. All three acceptance criteria are satisfied.",
+  "missing_requirements": [],
   "hallucinated_features": [],
-  "confidence": 0.85,
+  "confidence": 0.97,
   "changed_files": [
     "frontend-file-summaries.txt",
     "frontend/src/components/OrderForm.tsx",

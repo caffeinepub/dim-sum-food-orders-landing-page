@@ -2,9 +2,13 @@
   "frontend/src/App.tsx": "Main application component managing order state with sub-menu options support, rendering Hero, Menu, OrderForm, and Footer sections with toast notifications.",
   "frontend/src/components/Hero.tsx": "Hero section component with SUMOJI branding, full-screen dim sum background image, \"Steam. Snap. Repeat.\" tagline, and \"Order Now\" call-to-action button with smooth scroll to menu.",
   "frontend/src/components/Menu.tsx": "Menu section displaying 3 menu items with ingredient checkboxes; Party Pack 40pcs description updated to \"Party Pack isi 40 pcs\" and Party Pack 50pcs description updated to \"Party Pack isi 50 pcs\".",
-  "frontend/src/components/OrderForm.tsx": "Order form with cart summary, contact form, QRIS payment section (now showing the new DIMSUM OJI QRIS image from /assets/G191285866-0703A01-default.png with responsive sizing), and order submission.",
+  "frontend/src/components/OrderForm.tsx": "Order form component with cart summary, contact form, and a two-step confirmation flow showing the QRIS payment QR code after order confirmation; clicking \"Confirm Payment Received\" marks the order as paid, shows a brief success toast, then reloads the page after 1.5 seconds to reset the app to its initial empty state.",
   "frontend/src/components/Footer.tsx": "Footer component with SUMOJI branding, DKI Jakarta address, and a WhatsApp icon (green #25D366) linking the phone number to a direct wa.me chat, plus caffeine.ai attribution.",
   "frontend/src/hooks/useQueries.ts": "Empty queries file as backend is not used; all data is managed locally in the frontend.",
   "frontend/src/index.css": "Global styles with warm dim sum color palette (reds, creams, golds) using OKLCH color system for both light and dark modes.",
-  "frontend/src/lib/formatCurrency.ts": "Currency formatting utility that converts numbers to Indonesian Rupiah format (e.g., \"Rp. 17.500,-\")."
+  "frontend/src/lib/formatCurrency.ts": "Currency formatting utility that converts numbers to Indonesian Rupiah format (e.g., \"Rp. 17.500,-\").",
+  "frontend/src/lib/formatWhatsAppMessage.ts": "Utility function that formats order items, total price, customer name, and phone into a WhatsApp-friendly multiline message string using the existing formatCurrency helper.",
+  "frontend/src/lib/openWhatsApp.ts": "Utility function that URL-encodes a message and opens a WhatsApp chat link to +6281380633345 in a new browser tab.",
+  "frontend/index.html": "HTML entry point with the page title set to \"Welcome to SUMOJI\" and a favicon link pointing to the generated SUMOJI dim sum circular image at `/assets/generated/sumoji-favicon.dim_512x512.png`.",
+  "frontend/src/hooks/usePaymentTimer.ts": "Custom hook and localStorage utilities for managing a 1-hour payment window — tracks expiry timestamp, payment status, and fires an onExpiry callback when the countdown reaches zero; exports helpers to save, load, clear, and mark orders as paid."
 }

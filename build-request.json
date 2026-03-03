@@ -1,36 +1,34 @@
 {
   "kind": "build_request",
-  "title": "Replace QRIS payment image with uploaded image",
+  "title": "Refresh page after confirming payment received",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Replace the existing QRIS payment image in the OrderForm component with the newly uploaded QRIS image (G191285866-0703A01-default.png). Save the image as a static asset at frontend/public/assets/generated/qris.png and update the <img> src reference in OrderForm.tsx to point to this new file.",
+      "text": "After the user clicks the 'Confirm Payment Received' button (or equivalent payment confirmation action) in the OrderForm component, trigger a full page reload (window.location.reload()) so the app resets to its initial state.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-4"
         ],
         "quotes": [
-          "Change QRIS image into this"
+          "After confirm payment received, refresh the page"
         ]
       },
       "acceptanceCriteria": [
-        "The QRIS section in the OrderForm displays the new uploaded QRIS image (showing DIMSUM OJI / NMID: ID1026488874078).",
-        "The old QRIS image is no longer shown anywhere in the app.",
-        "The image is served from frontend/public/assets/generated/qris.png."
+        "Clicking the payment confirmation button causes the page to fully reload.",
+        "After reload, the app is in its initial empty state (no cart items, no order in progress).",
+        "The reload happens after any confirmation feedback or success state is shown to the user."
       ]
     }
   ],
   "constraints": [],
   "nonGoals": [
-    "Modifying any other part of the OrderForm beyond the QRIS image.",
-    "Changing backend logic."
+    "Changing the payment confirmation flow logic beyond adding the page refresh.",
+    "Clearing localStorage manually before reload (the reload itself resets in-memory state; localStorage is managed by existing hooks)."
   ],
   "imageRequirements": {
-    "required": [
-      "QRIS payment code card with white background, red accent shapes, QRIS logo top-left, GPN eagle logo top-right, bold text 'DIMSUM OJI', NMID ID1026488874078, label A01, large black QR code center, red footer strip with payment method icons (qris.dim_800x1100.png)"
-    ],
+    "required": [],
     "edits": []
   }
 }

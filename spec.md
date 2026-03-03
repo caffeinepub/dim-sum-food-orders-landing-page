@@ -1,10 +1,10 @@
 # Specification
 
 ## Summary
-**Goal:** Replace the existing QRIS payment image with the newly uploaded QRIS image for Dimsum Oji.
+**Goal:** Automatically refresh the page after the user confirms payment received, resetting the app to its initial state.
 
 **Planned changes:**
-- Save the uploaded QRIS image (G191285866-0703A01-default.png) as a static asset at `frontend/public/assets/generated/qris.png`
-- Update the `<img>` src reference in `OrderForm.tsx` to point to the new `qris.png` file
+- After the user clicks the "Confirm Payment Received" button in the OrderForm component, call `window.location.reload()` to trigger a full page reload.
+- The reload occurs after any confirmation feedback or success state is shown to the user.
 
-**User-visible outcome:** The QRIS payment section in the order form displays the new QRIS image showing "DIMSUM OJI" with NMID ID1026488874078.
+**User-visible outcome:** After confirming payment, the page fully reloads and the app resets to its initial empty state with no cart items or active order.

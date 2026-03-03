@@ -1,26 +1,21 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Replace QRIS payment image with uploaded image",
+  "title": "Refresh page after confirming payment received",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Replace the existing QRIS payment image in the OrderForm component with the newly uploaded QRIS image",
+      "summary": "Add full page reload after user confirms payment received in OrderForm component",
       "acceptanceCriteria": [
-        "The QRIS section in the OrderForm displays the new uploaded QRIS image (showing DIMSUM OJI / NMID: ID1026488874078).",
-        "The old QRIS image is no longer shown anywhere in the app.",
-        "The image is served from frontend/public/assets/generated/qris.png."
+        "Clicking the payment confirmation button causes the page to fully reload.",
+        "After reload, the app is in its initial empty state (no cart items, no order in progress).",
+        "The reload happens after any confirmation feedback or success state is shown to the user."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/qris.dim_800x1100.png",
-          "operation": "create",
-          "description": "Save the generated QRIS payment code image (showing QRIS logo, GPN eagle logo, DIMSUM OJI merchant name, NMID ID1026488874078, label A01, large QR code, and red footer with payment method icons) as a static asset at this workspace path."
-        },
-        {
           "path": "frontend/src/components/OrderForm.tsx",
           "operation": "modify",
-          "description": "Update the QRIS image reference in the OrderForm component to point to the new static asset at frontend/public/assets/generated/qris.dim_800x1100.png. Replace the existing <img> src attribute that currently references the old QRIS image (generated/qris-payment-code.dim_300x300.png) with the new path /assets/generated/qris.dim_800x1100.png. Ensure the image displays properly within the QRIS payment section with appropriate responsive styling."
+          "description": "Add window.location.reload() call to the 'Confirm Payment Received' button's onClick handler. The reload should occur after the markAsPaid function is called and any success feedback (such as a toast notification) has been displayed to the user. This ensures the app resets to its initial empty state with no cart items or active order after payment confirmation."
         }
       ]
     }

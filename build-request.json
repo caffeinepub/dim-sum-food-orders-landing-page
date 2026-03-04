@@ -1,31 +1,56 @@
 {
   "kind": "build_request",
-  "title": "Refresh page after confirming payment received",
+  "title": "QR Code Payment After Order Confirmation & Reset Flow",
+  "projectName": "SUMOJI",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "After the user clicks the 'Confirm Payment Received' button (or equivalent payment confirmation action) in the OrderForm component, trigger a full page reload (window.location.reload()) so the app resets to its initial state.",
+      "text": "In OrderForm, show the QRIS QR code payment section only after the user confirms their order (i.e., after the order confirmation step). The QR code must not be visible before the order is confirmed.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "After confirm payment received, refresh the page"
+          "Payment via QR code will appear after order confirmation"
         ]
       },
       "acceptanceCriteria": [
-        "Clicking the payment confirmation button causes the page to fully reload.",
-        "After reload, the app is in its initial empty state (no cart items, no order in progress).",
-        "The reload happens after any confirmation feedback or success state is shown to the user."
+        "The QRIS QR code is hidden during the initial order/cart view",
+        "The QRIS QR code becomes visible only after the user submits/confirms their order",
+        "The transition to the QR code payment step is triggered by the order confirmation action"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "In OrderForm, when the 'Confirm Payment Received' button is triggered, reset the entire order state back to the initial/empty state (start from the beginning), clearing cart items, contact info, and payment status.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "After confirm payment received button triggered, refresh the order from the start again"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking 'Confirm Payment Received' clears the cart and all order data",
+        "The UI returns to the initial order/menu state after payment confirmation",
+        "Any localStorage order data (e.g., payment timer state) is cleared on reset",
+        "The user sees a fresh start without needing a full page reload, OR a full page reload is used to guarantee a clean state"
       ]
     }
   ],
-  "constraints": [],
+  "constraints": [
+    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui",
+    "Keep all order state management consistent with the existing local/browser-side storage approach (no backend persistence required)"
+  ],
   "nonGoals": [
-    "Changing the payment confirmation flow logic beyond adding the page refresh.",
-    "Clearing localStorage manually before reload (the reload itself resets in-memory state; localStorage is managed by existing hooks)."
+    "Backend payment verification or order persistence",
+    "Real-time payment status polling",
+    "Changes to the WhatsApp messaging flow",
+    "Modifications to the Hero, Menu, or Footer components"
   ],
   "imageRequirements": {
     "required": [],

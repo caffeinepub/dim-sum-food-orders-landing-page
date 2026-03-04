@@ -6,7 +6,18 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { ShoppingCart, Trash2, Plus, Minus, CheckCircle, QrCode, Clock, AlertCircle, ArrowRight } from 'lucide-react';
+import {
+  ShoppingCart,
+  Trash2,
+  Plus,
+  Minus,
+  CheckCircle,
+  QrCode,
+  Clock,
+  AlertCircle,
+  ArrowRight,
+  RefreshCw,
+} from 'lucide-react';
 import { toast } from 'sonner';
 import { formatCurrency } from '../lib/formatCurrency';
 import { formatWhatsAppMessage } from '../lib/formatWhatsAppMessage';
@@ -16,7 +27,6 @@ import {
   usePaymentTimer,
   saveActiveOrder,
   clearActiveOrder,
-  markOrderPaid,
   loadActiveOrder,
 } from '../hooks/usePaymentTimer';
 
@@ -41,7 +51,6 @@ export default function OrderForm({
     phone: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [paymentConfirmed, setPaymentConfirmed] = useState(false);
   const [isOrderConfirmed, setIsOrderConfirmed] = useState(false);
 
   // Track if we've already shown the expiry toast to avoid duplicates
@@ -52,7 +61,6 @@ export default function OrderForm({
     setExpiryHandled(true);
     clearActiveOrder();
     onClearOrder();
-    setPaymentConfirmed(false);
     setIsOrderConfirmed(false);
     toast.error('Order canceled', {
       description: 'Your order has been canceled because payment was not received within 1 hour.',
@@ -71,7 +79,9 @@ export default function OrderForm({
     !isExpired &&
     activeOrder?.paymentStatus === 'pending';
 
-  // Show QR section if order is locally confirmed OR already awaiting payment (persisted)
+  // Show QR section ONLY after the user explicitly confirms the order (isOrderConfirmed),
+  // OR if there's already a persisted awaiting-payment order from a previous session,
+  // OR if the order is already marked paid.
   const showQRSection = isOrderConfirmed || isAwaitingPayment || isPaid;
 
   const totalPrice = orderItems.reduce(
@@ -88,20 +98,34 @@ export default function OrderForm({
     return option?.label || optionId;
   };
 
+  /**
+   * "Confirm Payment Received" — clears ALL order data from localStorage,
+   * resets the cart, and reloads the page to return to a completely fresh state.
+   */
   const handleConfirmPaymentReceived = () => {
-    markOrderPaid();
-    setPaymentConfirmed(true);
-    toast.success('Payment successful!', {
-      description: 'Your order is confirmed. Thank you!',
+    // Clear all order-related localStorage data
+    clearActiveOrder();
+    localStorage.removeItem('dimSumOrders');
+
+    // Clear the cart in parent state
+    onClearOrder();
+
+    toast.success('Payment confirmed! Thank you! 🎉', {
+      description: 'Your order is complete. Starting fresh…',
       icon: <CheckCircle className="h-5 w-5" />,
-      duration: 2000,
+      duration: 1500,
     });
-    // Reload the page after a short delay so the toast is visible
+
+    // Reload after a brief moment so the toast is visible
     setTimeout(() => {
       window.location.reload();
     }, 1500);
   };
 
+  /**
+   * Step 1 — "Confirm Order & Proceed to Payment"
+   * Validates the form and reveals the QR code section.
+   */
   const handleConfirmOrder = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -126,6 +150,10 @@ export default function OrderForm({
     });
   };
 
+  /**
+   * Step 2 — "Send Order & Start Timer"
+   * Saves the order to localStorage, starts the 1-hour timer, and sends WhatsApp message.
+   */
   const handleSubmitOrder = () => {
     setIsSubmitting(true);
 
@@ -188,7 +216,7 @@ export default function OrderForm({
           </p>
         </div>
 
-        {/* Payment Status Banner */}
+        {/* Payment Status Banner — Awaiting */}
         {isAwaitingPayment && (
           <div className="mb-8 p-4 rounded-xl border-2 border-amber-500/60 bg-amber-50 dark:bg-amber-950/30 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
@@ -213,6 +241,7 @@ export default function OrderForm({
           </div>
         )}
 
+        {/* Payment Status Banner — Paid */}
         {isPaid && (
           <div className="mb-8 p-4 rounded-xl border-2 border-green-500/60 bg-green-50 dark:bg-green-950/30 flex items-center gap-3">
             <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0" />
@@ -228,7 +257,7 @@ export default function OrderForm({
         )}
 
         <div className="grid lg:grid-cols-2 gap-8">
-          {/* Order Summary */}
+          {/* ── Order Summary ── */}
           <Card className="border-2">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -351,9 +380,9 @@ export default function OrderForm({
             </CardContent>
           </Card>
 
-          {/* Contact & Payment Form */}
+          {/* ── Contact & Payment Column ── */}
           <div className="space-y-6">
-            {/* Show contact form only when not awaiting payment and not paid and not yet confirmed */}
+            {/* Step 1: Contact form — hidden once order is confirmed */}
             {!isAwaitingPayment && !isPaid && !isOrderConfirmed && (
               <Card className="border-2">
                 <CardHeader>
@@ -399,12 +428,12 @@ export default function OrderForm({
               </Card>
             )}
 
-            {/* QRIS Payment — only shown after order is confirmed */}
+            {/* Step 2: QRIS Payment — appears ONLY after order is confirmed */}
             {showQRSection && (
-              <Card className="border-2">
+              <Card className="border-2 border-primary/30">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <QrCode className="h-5 w-5" />
+                    <QrCode className="h-5 w-5 text-primary" />
                     Payment via QRIS
                   </CardTitle>
                   <CardDescription>
@@ -416,6 +445,7 @@ export default function OrderForm({
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                  {/* QR Code image */}
                   <div className="flex justify-center">
                     <div className="p-2 bg-white rounded-xl border-2 border-muted inline-block">
                       <img
@@ -426,6 +456,7 @@ export default function OrderForm({
                     </div>
                   </div>
 
+                  {/* Amount to pay */}
                   {totalPrice > 0 && (
                     <div className="text-center p-3 bg-primary/10 rounded-lg">
                       <p className="text-sm text-muted-foreground mb-1">Amount to pay</p>
@@ -439,46 +470,51 @@ export default function OrderForm({
                   {isAwaitingPayment && (
                     <div className="flex items-center justify-center gap-2 p-3 rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-300 dark:border-amber-700">
                       <Clock className="h-4 w-4 text-amber-600 animate-pulse" />
-                      <span className="text-sm text-amber-700 dark:text-amber-300 font-medium">
-                        {formattedTime} remaining to complete payment
+                      <span className="text-sm font-medium text-amber-700 dark:text-amber-300">
+                        Time remaining:
+                      </span>
+                      <span className="text-sm font-mono font-bold text-amber-700 dark:text-amber-300 tabular-nums">
+                        {formattedTime}
                       </span>
                     </div>
                   )}
 
-                  <div className="space-y-3">
-                    {/* Send to WhatsApp button — shown when order is confirmed but not yet submitted */}
-                    {isOrderConfirmed && !isAwaitingPayment && !isPaid && (
-                      <Button
-                        className="w-full"
-                        onClick={handleSubmitOrder}
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <span className="animate-spin mr-2">⏳</span>
-                            Processing...
-                          </>
-                        ) : (
-                          <>
-                            <CheckCircle className="h-4 w-4 mr-2" />
-                            Send Order via WhatsApp
-                          </>
-                        )}
-                      </Button>
-                    )}
+                  {/* Send order + start timer button — shown when confirmed but not yet submitted */}
+                  {isOrderConfirmed && !isAwaitingPayment && !isPaid && (
+                    <Button
+                      className="w-full"
+                      onClick={handleSubmitOrder}
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+                          Sending Order…
+                        </>
+                      ) : (
+                        <>
+                          <CheckCircle className="h-4 w-4 mr-2" />
+                          Send Order via WhatsApp &amp; Start Timer
+                        </>
+                      )}
+                    </Button>
+                  )}
 
-                    {/* Confirm payment received button */}
-                    {(isAwaitingPayment || isOrderConfirmed) && !isPaid && !paymentConfirmed && (
-                      <Button
-                        variant="outline"
-                        className="w-full border-green-500 text-green-700 hover:bg-green-50 dark:hover:bg-green-950/30"
-                        onClick={handleConfirmPaymentReceived}
-                      >
-                        <CheckCircle className="h-4 w-4 mr-2" />
-                        Confirm Payment Received
-                      </Button>
-                    )}
-                  </div>
+                  {/* Confirm payment received button */}
+                  {(isAwaitingPayment || isPaid || isOrderConfirmed) && (
+                    <Button
+                      variant={isPaid ? 'default' : 'outline'}
+                      className={
+                        isPaid
+                          ? 'w-full bg-green-600 hover:bg-green-700 text-white'
+                          : 'w-full border-green-600 text-green-700 hover:bg-green-600 hover:text-white'
+                      }
+                      onClick={handleConfirmPaymentReceived}
+                    >
+                      <CheckCircle className="h-4 w-4 mr-2" />
+                      Confirm Payment Received
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             )}

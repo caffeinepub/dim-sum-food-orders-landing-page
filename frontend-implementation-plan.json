@@ -1,21 +1,43 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Refresh page after confirming payment received",
+  "title": "QR Code Payment After Order Confirmation & Reset Flow",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Add full page reload after user confirms payment received in OrderForm component",
+      "summary": "Show QRIS QR code payment section only after order confirmation",
       "acceptanceCriteria": [
-        "Clicking the payment confirmation button causes the page to fully reload.",
-        "After reload, the app is in its initial empty state (no cart items, no order in progress).",
-        "The reload happens after any confirmation feedback or success state is shown to the user."
+        "The QRIS QR code is hidden during the initial order/cart view",
+        "The QRIS QR code becomes visible only after the user submits/confirms their order",
+        "The transition to the QR code payment step is triggered by the order confirmation action"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/OrderForm.tsx",
           "operation": "modify",
-          "description": "Add window.location.reload() call to the 'Confirm Payment Received' button's onClick handler. The reload should occur after the markAsPaid function is called and any success feedback (such as a toast notification) has been displayed to the user. This ensures the app resets to its initial empty state with no cart items or active order after payment confirmation."
+          "description": "Modify the order confirmation flow to hide the QRIS QR code section until after the user confirms their order. Add a state flag (e.g., orderConfirmed) that starts as false and becomes true only when the user clicks the order confirmation button. Conditionally render the QRIS QR code section (displaying frontend/public/assets/generated/qris-payment-code.dim_300x300.png) only when orderConfirmed is true. Ensure the order confirmation button triggers both the orderConfirmed state change and any existing confirmation logic (such as starting the payment timer)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Reset entire order state to initial/empty state when payment is confirmed",
+      "acceptanceCriteria": [
+        "Clicking 'Confirm Payment Received' clears the cart and all order data",
+        "The UI returns to the initial order/menu state after payment confirmation",
+        "Any localStorage order data (e.g., payment timer state) is cleared on reset",
+        "The user sees a fresh start without needing a full page reload, OR a full page reload is used to guarantee a clean state"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/OrderForm.tsx",
+          "operation": "modify",
+          "description": "Update the 'Confirm Payment Received' button handler to clear all order-related localStorage data (including payment timer state managed by usePaymentTimer), reset any order confirmation flags to their initial state, and trigger a full page reload using window.location.reload() to guarantee a completely clean state. Remove or adjust any existing setTimeout delay before reload if it conflicts with immediate user feedback expectations."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Ensure the order state (items, contact info, totals) is fully reset when OrderForm triggers the payment confirmation reset. If App.tsx manages cart state via useState or other local state, ensure those states are cleared before or during the page reload initiated by OrderForm. Verify that no residual order data persists across the reload cycle."
         }
       ]
     }

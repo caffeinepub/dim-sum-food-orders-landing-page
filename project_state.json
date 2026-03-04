@@ -1,16 +1,24 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "New project",
+  "summary": "POS/ordering app with QR code payment flow: QR code payment appears after order confirmation, and after 'Confirm Payment Received' button is triggered, the order resets/refreshes from the start.",
   "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-after-the-user-clicks-the-confirm-payment-received-button-or-equivalent-payment-confirmation-action-in-the-orderform-component-trigger-a-full-page-reload-window-location-reload-so-the-app-resets-to-its-initial-state",
-      "title": "After the user clicks the 'Confirm Payment Received' button (or equivalent payment confirmation action) in the OrderForm component, trigger a full page reload (window.location.reload()) so the app resets to its initial state.",
+      "id": "feature-in-orderform-show-the-qris-qr-code-payment-section-only-after-the-user-confirms-their-order-i-e-after-the-order-confirmation-step-the-qr-code-must-not-be-visible-before-the-order-is-confirmed",
+      "title": "In OrderForm, show the QRIS QR code payment section only after the user confirms their order (i.e., after the order confirmation step). The QR code must not be visible before the order is confirmed.",
       "reqIds": [
         "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-orderform-when-the-confirm-payment-received-button-is-triggered-reset-the-entire-order-state-back-to-the-initial-empty-state-start-from-the-beginning-clearing-cart-items-contact-info-and-payment-status",
+      "title": "In OrderForm, when the 'Confirm Payment Received' button is triggered, reset the entire order state back to the initial/empty state (start from the beginning), clearing cart items, contact info, and payment status.",
+      "reqIds": [
+        "REQ-2"
       ],
       "version": 1
     }
@@ -18,12 +26,19 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "After confirming payment received, refresh the page",
+      "summary": "Show QR code payment after order confirmation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "After 'Confirm Payment Received' button is triggered, refresh/reset the order from the start",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "projectName": "Refresh page after confirming payment received",
+  "gameProjectType": "none",
+  "projectName": "SUMOJI",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

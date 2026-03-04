@@ -2,8 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-after-the-user-clicks-the-confirm-payment-received-button-or-equivalent-payment-confirmation-action-in-the-orderform-component-trigger-a-full-page-reload-window-location-reload-so-the-app-resets-to-its-initial-state",
-      "featureTitle": "After the user clicks the 'Confirm Payment Received' button (or equivalent payment confirmation action) in the OrderForm component, trigger a full page reload (window.location.reload()) so the app resets to its initial state.",
+      "featureId": "feature-in-orderform-show-the-qris-qr-code-payment-section-only-after-the-user-confirms-their-order-i-e-after-the-order-confirmation-step-the-qr-code-must-not-be-visible-before-the-order-is-confirmed",
+      "featureTitle": "In OrderForm, show the QRIS QR code payment section only after the user confirms their order (i.e., after the order confirmation step). The QR code must not be visible before the order is confirmed.",
       "files": [
         "frontend/src/components/OrderForm.tsx"
       ],
@@ -18,6 +18,26 @@
       ],
       "testIds": [
         "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-in-orderform-when-the-confirm-payment-received-button-is-triggered-reset-the-entire-order-state-back-to-the-initial-empty-state-start-from-the-beginning-clearing-cart-items-contact-info-and-payment-status",
+      "featureTitle": "In OrderForm, when the 'Confirm Payment Received' button is triggered, reset the entire order state back to the initial/empty state (start from the beginning), clearing cart items, contact info, and payment status.",
+      "files": [
+        "frontend/src/components/OrderForm.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "qr-code@1.0.0",
+        "camera@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
       ],
       "confidence": "high"
     }

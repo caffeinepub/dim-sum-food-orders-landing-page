@@ -1,21 +1,33 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-03-03T08:04:13.110Z",
+  "generatedAt": "2026-03-03T08:50:21.824Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 2,
+    "implemented": 2,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "After the user clicks the 'Confirm Payment Received' button (or equivalent payment confirmation action) in the OrderForm component, trigger a full page reload (window.location.reload()) so the app resets to its initial state.",
+        "summary": "In OrderForm, show the QRIS QR code payment section only after the user confirms their order (i.e., after the order confirmation step). The QR code must not be visible before the order is confirmed.",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/components/OrderForm.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/OrderForm.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "In OrderForm, when the 'Confirm Payment Received' button is triggered, reset the entire order state back to the initial/empty state (start from the beginning), clearing cart items, contact info, and payment status.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/OrderForm.tsx",
+          "frontend/src/App.tsx"
         ],
         "matchedFiles": [
           "frontend/src/components/OrderForm.tsx"

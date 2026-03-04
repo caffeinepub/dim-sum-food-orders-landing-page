@@ -1,11 +1,28 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-03-03T08:04:13.108Z",
-  "summary": "The diff implements REQ-1 correctly. In OrderForm.tsx, the handleConfirmPaymentReceived function calls markOrderPaid(), shows a success toast with a 2-second duration, and then triggers window.location.reload() after a 1.5-second delay — ensuring the toast is visible before reload. All three acceptance criteria are satisfied.",
+  "generatedAt": "2026-03-03T08:50:21.821Z",
+  "summary": "Both REQ-1 and REQ-2 are implemented in the diff. REQ-1 is addressed via the `isOrderConfirmed` state flag and `showQRSection` logic that gates the QR code section behind the order confirmation action. REQ-2 is addressed via `handleConfirmPaymentReceived` which clears localStorage, resets cart state via `onClearOrder()`, and reloads the page. All acceptance criteria appear to be satisfied.",
   "missing_requirements": [],
-  "hallucinated_features": [],
-  "confidence": 0.97,
+  "hallucinated_features": [
+    {
+      "description": "Automatic order expiry/cancellation after 1 hour using a payment timer hook (usePaymentTimer), with a countdown, expiry toast, and auto-cancellation of the order when the timer runs out.",
+      "reason": "Neither REQ-1 nor REQ-2 mention a payment timer, countdown, or automatic order expiry mechanism. The build request explicitly lists 'Real-time payment status polling' as a non-goal and does not request any timer-based cancellation.",
+      "evidence": [
+        "frontend/src/components/OrderForm.tsx",
+        "frontend/src/hooks/usePaymentTimer.ts"
+      ]
+    },
+    {
+      "description": "Session persistence of an active awaiting-payment order across page reloads via localStorage (loadActiveOrder, saveActiveOrder), so the QR section re-appears on reload if a pending order exists.",
+      "reason": "The build request does not require session persistence of the payment state across reloads. REQ-1 only requires the QR to appear after confirmation within the same session flow, and REQ-2 requires clearing all state on payment confirmation. The automatic re-display of QR from a stored pending order was not requested.",
+      "evidence": [
+        "frontend/src/components/OrderForm.tsx",
+        "frontend/src/hooks/usePaymentTimer.ts"
+      ]
+    }
+  ],
+  "confidence": 0.82,
   "changed_files": [
     "frontend-file-summaries.txt",
     "frontend/src/components/OrderForm.tsx",

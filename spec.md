@@ -1,10 +1,10 @@
 # Specification
 
 ## Summary
-**Goal:** Automatically refresh the page after the user confirms payment received, resetting the app to its initial state.
+**Goal:** Show the QRIS QR code payment only after order confirmation, and reset the entire order state when payment is confirmed.
 
 **Planned changes:**
-- After the user clicks the "Confirm Payment Received" button in the OrderForm component, call `window.location.reload()` to trigger a full page reload.
-- The reload occurs after any confirmation feedback or success state is shown to the user.
+- Hide the QRIS QR code section in OrderForm until the user confirms their order; only reveal it after the order confirmation step is completed
+- When the "Confirm Payment Received" button is clicked, reset all order state (cart items, contact info, payment status, and any related localStorage data) and return the UI to the initial empty/menu state
 
-**User-visible outcome:** After confirming payment, the page fully reloads and the app resets to its initial empty state with no cart items or active order.
+**User-visible outcome:** Users will only see the QR code payment section after confirming their order. After confirming payment received, the order form resets completely to a fresh state without requiring a page reload.

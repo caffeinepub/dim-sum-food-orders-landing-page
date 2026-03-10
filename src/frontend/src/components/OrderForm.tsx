@@ -62,9 +62,6 @@ export default function OrderForm({
     return option?.label || optionId;
   };
 
-  /**
-   * Submit order — validates form, sends WhatsApp message, resets form.
-   */
   const handleSubmitOrder = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -97,7 +94,6 @@ export default function OrderForm({
         icon: <CheckCircle className="h-5 w-5" />,
       });
 
-      // Reset form and cart
       setContactDetails({ name: "", phone: "" });
       onClearOrder();
       setIsSubmitting(false);
@@ -105,24 +101,24 @@ export default function OrderForm({
   };
 
   return (
-    <section id="order" className="py-20 px-4 bg-muted/30">
+    <section id="order" className="py-12 sm:py-20 px-4 bg-muted/30">
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 inline-block bg-primary text-primary-foreground px-6 py-2 rounded-full">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 inline-block bg-primary text-primary-foreground px-5 py-2 rounded-full">
             Place Your Order
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mt-3">
             Review your selections and provide delivery details to complete your
             order.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {/* ── Order Summary ── */}
           <Card className="border-2">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
                 <ShoppingCart className="h-5 w-5" />
                 Order Summary
               </CardTitle>
@@ -135,29 +131,32 @@ export default function OrderForm({
             <CardContent>
               {orderItems.length === 0 ? (
                 <div
-                  className="text-center py-12 text-muted-foreground"
+                  className="text-center py-10 sm:py-12 text-muted-foreground"
                   data-ocid="order.empty_state"
                 >
-                  <ShoppingCart className="h-16 w-16 mx-auto mb-4 opacity-20" />
+                  <ShoppingCart className="h-14 w-14 sm:h-16 sm:w-16 mx-auto mb-4 opacity-20" />
                   <p>Add items from the menu to get started</p>
                 </div>
               ) : (
                 <>
-                  <ScrollArea className="h-[400px] pr-4">
-                    <div className="space-y-4" data-ocid="order.list">
+                  <ScrollArea className="h-[280px] sm:h-[340px] lg:h-[400px] pr-2 sm:pr-4">
+                    <div
+                      className="space-y-3 sm:space-y-4"
+                      data-ocid="order.list"
+                    >
                       {orderItems.map((item, index) => (
                         <div
                           key={`${item.menuItem.id}-${index}`}
                           data-ocid={`order.item.${index + 1}`}
-                          className="flex gap-4 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
+                          className="flex gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
                         >
                           <img
                             src={item.menuItem.image}
                             alt={item.menuItem.name}
-                            className="w-20 h-20 object-cover rounded-md flex-shrink-0"
+                            className="w-14 h-14 sm:w-20 sm:h-20 object-cover rounded-md flex-shrink-0"
                           />
                           <div className="flex-1 min-w-0">
-                            <h4 className="font-semibold text-sm mb-1">
+                            <h4 className="font-semibold text-sm mb-1 truncate">
                               {item.menuItem.name}
                             </h4>
                             {item.selectedSubOptions.length > 0 && (
@@ -173,12 +172,12 @@ export default function OrderForm({
                                 ))}
                               </div>
                             )}
-                            <div className="flex items-center justify-between gap-2">
-                              <div className="flex items-center gap-2">
+                            <div className="flex items-center justify-between gap-2 flex-wrap">
+                              <div className="flex items-center gap-1 sm:gap-2">
                                 <Button
                                   variant="outline"
                                   size="icon"
-                                  className="h-6 w-6"
+                                  className="h-7 w-7 sm:h-6 sm:w-6 min-h-[28px] min-w-[28px]"
                                   data-ocid={`order.secondary_button.${index + 1}`}
                                   onClick={() =>
                                     onUpdateQuantity(index, item.quantity - 1)
@@ -192,7 +191,7 @@ export default function OrderForm({
                                 <Button
                                   variant="outline"
                                   size="icon"
-                                  className="h-6 w-6"
+                                  className="h-7 w-7 sm:h-6 sm:w-6 min-h-[28px] min-w-[28px]"
                                   data-ocid={`order.secondary_button.${index + 1}`}
                                   onClick={() =>
                                     onUpdateQuantity(index, item.quantity + 1)
@@ -201,7 +200,7 @@ export default function OrderForm({
                                   <Plus className="h-3 w-3" />
                                 </Button>
                               </div>
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 sm:gap-2">
                                 <span className="text-sm font-semibold">
                                   {formatCurrency(
                                     item.menuItem.price * item.quantity,
@@ -210,7 +209,7 @@ export default function OrderForm({
                                 <Button
                                   variant="ghost"
                                   size="icon"
-                                  className="h-6 w-6 text-destructive hover:text-destructive"
+                                  className="h-7 w-7 sm:h-6 sm:w-6 min-h-[28px] min-w-[28px] text-destructive hover:text-destructive"
                                   data-ocid={`order.delete_button.${index + 1}`}
                                   onClick={() => onUpdateQuantity(index, 0)}
                                 >
@@ -237,7 +236,7 @@ export default function OrderForm({
 
                   <Button
                     variant="outline"
-                    className="w-full mt-4 text-destructive border-destructive hover:bg-destructive hover:text-destructive-foreground"
+                    className="w-full mt-4 text-destructive border-destructive hover:bg-destructive hover:text-destructive-foreground min-h-[44px]"
                     data-ocid="order.delete_button"
                     onClick={onClearOrder}
                   >
@@ -253,7 +252,9 @@ export default function OrderForm({
           <div className="space-y-6">
             <Card className="border-2">
               <CardHeader>
-                <CardTitle>Delivery Details</CardTitle>
+                <CardTitle className="text-lg sm:text-xl">
+                  Delivery Details
+                </CardTitle>
                 <CardDescription>
                   Enter your contact information and send your order via
                   WhatsApp.
@@ -272,6 +273,7 @@ export default function OrderForm({
                         handleInputChange("name", e.target.value)
                       }
                       required
+                      className="input-no-zoom"
                     />
                   </div>
                   <div className="space-y-2">
@@ -286,12 +288,13 @@ export default function OrderForm({
                         handleInputChange("phone", e.target.value)
                       }
                       required
+                      className="input-no-zoom"
                     />
                   </div>
 
                   <Button
                     type="submit"
-                    className="w-full"
+                    className="w-full min-h-[44px]"
                     data-ocid="order.submit_button"
                     disabled={orderItems.length === 0 || isSubmitting}
                   >

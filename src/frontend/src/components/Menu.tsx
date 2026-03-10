@@ -89,7 +89,7 @@ export default function Menu({ onAddToOrder }: MenuProps) {
         maxSelections !== undefined &&
         current.length >= maxSelections
       ) {
-        return prev; // Do not add more than the max
+        return prev;
       }
 
       return {
@@ -120,13 +120,14 @@ export default function Menu({ onAddToOrder }: MenuProps) {
 
     const optionsText =
       subOptions.length > 0
-        ? ` with ${subOptions.length} ingredient${subOptions.length !== 1 ? "s" : ""}`
+        ? ` with ${subOptions.length} variant${subOptions.length !== 1 ? "s" : ""}`
         : "";
 
     toast.success(
       `Added ${quantity}x ${item.name}${optionsText} to your order`,
       {
         description: formatCurrency(item.price * quantity),
+        style: { background: "#F2E852", color: "#000" },
       },
     );
 
@@ -139,17 +140,17 @@ export default function Menu({ onAddToOrder }: MenuProps) {
   };
 
   return (
-    <section id="menu" className="py-20 px-4 bg-background">
+    <section id="menu" className="py-12 sm:py-20 px-4 bg-background">
       <div className="container mx-auto max-w-7xl">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 inline-block bg-primary text-primary-foreground px-6 py-2 rounded-full">
+        <div className="text-center mb-10 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 inline-block bg-primary text-primary-foreground px-5 py-2 rounded-full">
             Our Menu
           </h2>
         </div>
 
         {/* Menu Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mb-10 sm:mb-12">
           {menuItems.map((item) => {
             const quantity = quantities[item.id] || 1;
             const itemSelectedOptions = selectedOptions[item.id] || [];
@@ -166,7 +167,7 @@ export default function Menu({ onAddToOrder }: MenuProps) {
                 key={item.id}
                 className="overflow-hidden hover:shadow-xl transition-shadow duration-300 border-2 hover:border-primary/20"
               >
-                <div className="aspect-square overflow-hidden bg-muted">
+                <div className="aspect-video sm:aspect-square overflow-hidden bg-muted">
                   <img
                     src={item.image}
                     alt={item.name}
@@ -174,13 +175,15 @@ export default function Menu({ onAddToOrder }: MenuProps) {
                   />
                 </div>
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-xl">{item.name}</CardTitle>
+                  <CardTitle className="text-lg sm:text-xl">
+                    {item.name}
+                  </CardTitle>
                   <CardDescription className="text-sm line-clamp-2">
                     {item.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pb-3 space-y-4">
-                  <div className="text-2xl font-bold text-primary">
+                  <div className="text-xl sm:text-2xl font-bold text-primary">
                     {formatCurrency(item.price)}
                   </div>
 
@@ -198,7 +201,7 @@ export default function Menu({ onAddToOrder }: MenuProps) {
                           </p>
                         )}
                       </div>
-                      <div className="space-y-2">
+                      <div className="grid grid-cols-2 gap-x-3 gap-y-2">
                         {item.subOptions.map((option) => {
                           const isChecked = itemSelectedOptions.includes(
                             option.id,
@@ -221,6 +224,7 @@ export default function Menu({ onAddToOrder }: MenuProps) {
                                     maxSelections,
                                   )
                                 }
+                                className="flex-shrink-0"
                               />
                               <Label
                                 htmlFor={`${item.id}-${option.id}`}
@@ -245,9 +249,10 @@ export default function Menu({ onAddToOrder }: MenuProps) {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="h-8 w-8"
+                      className="h-11 w-11 min-h-[44px] min-w-[44px]"
                       onClick={() => handleQuantityChange(item.id, -1)}
                       disabled={quantity <= 1}
+                      data-ocid={`menu.secondary_button.${item.id}`}
                     >
                       <Minus className="h-4 w-4" />
                     </Button>
@@ -257,15 +262,16 @@ export default function Menu({ onAddToOrder }: MenuProps) {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="h-8 w-8"
+                      className="h-11 w-11 min-h-[44px] min-w-[44px]"
                       onClick={() => handleQuantityChange(item.id, 1)}
+                      data-ocid={`menu.secondary_button.${item.id}`}
                     >
                       <Plus className="h-4 w-4" />
                     </Button>
                   </div>
                   {/* Add to Order Button */}
                   <Button
-                    className="w-full bg-primary hover:bg-primary/90"
+                    className="w-full bg-primary hover:bg-primary/90 min-h-[44px] text-sm sm:text-base"
                     onClick={() => handleAddToOrder(item)}
                     disabled={
                       !!(
@@ -274,7 +280,7 @@ export default function Menu({ onAddToOrder }: MenuProps) {
                         itemSelectedOptions.length === 0
                       )
                     }
-                    data-ocid={`menu.add_to_order.${item.id}.primary_button`}
+                    data-ocid={"menu.primary_button"}
                   >
                     Add to Order
                   </Button>
@@ -290,7 +296,8 @@ export default function Menu({ onAddToOrder }: MenuProps) {
             size="lg"
             variant="outline"
             onClick={scrollToOrder}
-            className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+            data-ocid="menu.secondary_button"
+            className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground min-h-[44px] text-sm sm:text-base px-5 sm:px-8"
           >
             View Your Order & Checkout
           </Button>

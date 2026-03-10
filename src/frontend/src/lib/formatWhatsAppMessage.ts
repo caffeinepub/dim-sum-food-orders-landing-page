@@ -9,9 +9,9 @@ export function formatWhatsAppMessage(
 ): string {
   const lines: string[] = [];
 
-  lines.push("🥟 *Pesanan Baru - SUMOJI Dim Sum*");
+  lines.push("🛎️ *PESANAN BARU - SUMOJI*");
   lines.push("");
-  lines.push("📋 *Detail Pesanan:*");
+  lines.push("📋 *Detail Pesanan : *");
 
   for (const item of orderItems) {
     const itemTotal = item.menuItem.price * item.quantity;
@@ -28,13 +28,13 @@ export function formatWhatsAppMessage(
   }
 
   lines.push("");
-  lines.push(`💰 *Total: ${formatCurrency(totalPrice)}*`);
+  lines.push(`💰 *Total Pesanan: ${formatCurrency(totalPrice)}*`);
   lines.push("");
-  lines.push("👤 *Data Pemesan:*");
-  lines.push(`Nama: ${customerName}`);
-  lines.push(`No. HP: ${customerPhone}`);
+  lines.push("👤 *Data Pemesan : *");
+  lines.push(`Nama : ${customerName}`);
+  lines.push(`No. HP : ${customerPhone}`);
   lines.push("");
-  lines.push("✅ Pembayaran sudah dilakukan via QRIS.");
+  lines.push("Terima kasih telah memesan di *SUMOJI* 🙏");
 
   return lines.join("\n");
 }
